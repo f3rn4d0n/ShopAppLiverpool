@@ -14,6 +14,7 @@
 		CEC32EA924CC756F002026CE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32EA824CC756F002026CE /* SearchViewController.swift */; };
 		CEC32EB024CC78DB002026CE /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32EAF24CC78DB002026CE /* SearchController.swift */; };
 		CEC32EB324CC7918002026CE /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32EB224CC7918002026CE /* ProductTableViewCell.swift */; };
+		CEC32EB624CC7BB0002026CE /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32EB524CC7BB0002026CE /* Product.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CEC32EA824CC756F002026CE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CEC32EAF24CC78DB002026CE /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		CEC32EB224CC7918002026CE /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		CEC32EB524CC7BB0002026CE /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		CEC32E9224CC7415002026CE /* ShopAppLiverpool */ = {
 			isa = PBXGroup;
 			children = (
+				CEC32EB424CC7B9A002026CE /* Models */,
 				CEC32EB124CC7903002026CE /* ReusableCells */,
 				CEC32EAE24CC78C0002026CE /* Controllers */,
 				CEC32EAD24CC78B9002026CE /* Views */,
@@ -92,6 +95,14 @@
 				CEC32EB224CC7918002026CE /* ProductTableViewCell.swift */,
 			);
 			path = ReusableCells;
+			sourceTree = "<group>";
+		};
+		CEC32EB424CC7B9A002026CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEC32EB524CC7BB0002026CE /* Product.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +180,7 @@
 				CEC32EB324CC7918002026CE /* ProductTableViewCell.swift in Sources */,
 				CEC32E9624CC7415002026CE /* SceneDelegate.swift in Sources */,
 				CEC32EB024CC78DB002026CE /* SearchController.swift in Sources */,
+				CEC32EB624CC7BB0002026CE /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
