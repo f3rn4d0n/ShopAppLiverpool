@@ -50,7 +50,7 @@ class ProducstWebServices: NSObject {
                 }
                 DispatchQueue.main.async {
                     if let error = error {
-                        self?.delegate?.requestError(error)
+                        print(error.localizedDescription)
                     } else if let data = data, let response = response as? HTTPURLResponse{
                         do{
                             if response.statusCode == 200{
