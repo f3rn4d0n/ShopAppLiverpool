@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C2701B0CCA1FB9A529ECE973 /* Pods_ShopAppLiverpool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F814FAC8088EC026452C88 /* Pods_ShopAppLiverpool.framework */; };
 		CEC32E9424CC7415002026CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32E9324CC7415002026CE /* AppDelegate.swift */; };
 		CEC32E9624CC7415002026CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32E9524CC7415002026CE /* SceneDelegate.swift */; };
 		CEC32E9D24CC741A002026CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC32E9C24CC741A002026CE /* Assets.xcassets */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66F814FAC8088EC026452C88 /* Pods_ShopAppLiverpool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopAppLiverpool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BA084F3131B13780001C9B6 /* Pods-ShopAppLiverpool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopAppLiverpool.release.xcconfig"; path = "Target Support Files/Pods-ShopAppLiverpool/Pods-ShopAppLiverpool.release.xcconfig"; sourceTree = "<group>"; };
 		CEC32E9024CC7415002026CE /* ShopAppLiverpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopAppLiverpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC32E9324CC7415002026CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEC32E9524CC7415002026CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +33,7 @@
 		CEC32EB224CC7918002026CE /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		CEC32EB524CC7BB0002026CE /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		CEC32EB824CC8062002026CE /* ProducstWebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducstWebServices.swift; sourceTree = "<group>"; };
+		F5E25810E6605D8ECF70E698 /* Pods-ShopAppLiverpool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopAppLiverpool.debug.xcconfig"; path = "Target Support Files/Pods-ShopAppLiverpool/Pods-ShopAppLiverpool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +41,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2701B0CCA1FB9A529ECE973 /* Pods_ShopAppLiverpool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		456C859A76305050B17EF769 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66F814FAC8088EC026452C88 /* Pods_ShopAppLiverpool.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CEC32E8724CC7415002026CE = {
 			isa = PBXGroup;
 			children = (
 				CEC32E9224CC7415002026CE /* ShopAppLiverpool */,
 				CEC32E9124CC7415002026CE /* Products */,
+				E3C6EF69D78FB8B00380957C /* Pods */,
+				456C859A76305050B17EF769 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,6 +131,16 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		E3C6EF69D78FB8B00380957C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5E25810E6605D8ECF70E698 /* Pods-ShopAppLiverpool.debug.xcconfig */,
+				7BA084F3131B13780001C9B6 /* Pods-ShopAppLiverpool.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -123,9 +148,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEC32EA424CC741A002026CE /* Build configuration list for PBXNativeTarget "ShopAppLiverpool" */;
 			buildPhases = (
+				3D67DAB4267949669E8346A7 /* [CP] Check Pods Manifest.lock */,
 				CEC32E8C24CC7415002026CE /* Sources */,
 				CEC32E8D24CC7415002026CE /* Frameworks */,
 				CEC32E8E24CC7415002026CE /* Resources */,
+				98FE764DFB3ECC02C9F3AC73 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -180,6 +207,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3D67DAB4267949669E8346A7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShopAppLiverpool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98FE764DFB3ECC02C9F3AC73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShopAppLiverpool/Pods-ShopAppLiverpool-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShopAppLiverpool/Pods-ShopAppLiverpool-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShopAppLiverpool/Pods-ShopAppLiverpool-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CEC32E8C24CC7415002026CE /* Sources */ = {
@@ -326,6 +395,7 @@
 		};
 		CEC32EA524CC741A002026CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5E25810E6605D8ECF70E698 /* Pods-ShopAppLiverpool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -344,6 +414,7 @@
 		};
 		CEC32EA624CC741A002026CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA084F3131B13780001C9B6 /* Pods-ShopAppLiverpool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
