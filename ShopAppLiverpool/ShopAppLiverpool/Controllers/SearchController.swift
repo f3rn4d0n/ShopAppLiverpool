@@ -16,13 +16,41 @@ protocol SearchControllerProtocol{
 }
 
 class SearchController: NSObject {
+    //Protocols
     var delegate: SearchControllerProtocol?
-    var products:[Product] = []
-    let webServices = ProducstWebServices()
     
-    func requestListProducts(category:String = "Zapatos") {
+    //Managers
+    private let webServices = ProducstWebServices()
+    
+    //Control variables
+    private var productsWS:ProductWSResponse?
+    private var products: [Product] = []
+    private var categoryToSearch = ""
+    private var pageToSearch = 1
+    
+    func requestListProducts(category:String?) {
         webServices.delegate = self
-        webServices.requestListProducts(category)
+        if let categorySelect = category{
+            categoryToSearch = categorySelect
+        }
+        pageToSearch = 1
+        webServices.requestListProducts(categoryToSearch, pageToSearch: "1")
+    }
+    
+    func requestNextPage(){
+        if pageToSearch <= 0 {
+            pageToSearch = 1
+        }
+        if let lastRecNum = productsWS?.plpResults.plpState.lastRecNum, let totalNumRecs = productsWS?.plpResults.plpState.totalNumRecs{
+            if lastRecNum < totalNumRecs{
+                pageToSearch = pageToSearch + 1
+                webServices.requestListProducts(categoryToSearch, pageToSearch: "\(pageToSearch)")
+            }
+        }
+    }
+    
+    func getProducts() -> [Product]{
+        return products
     }
 }
 
@@ -31,10 +59,20 @@ extension SearchController: ProducstWebServicesDelegate{
         self.delegate?.errorServices(message: message)
     }
     
-    func newList(products: [Product]) {
-        self.products = products
+    func requestComplete(productsWS: ProductWSResponse){
+        if let originTerm = self.productsWS?.plpResults.plpState.originalSearchTerm{
+            if originTerm == productsWS.plpResults.plpState.originalSearchTerm{
+                self.products.append(contentsOf: productsWS.plpResults.records)
+            }else{
+                self.products = productsWS.plpResults.records
+            }
+        }else{
+            self.products = productsWS.plpResults.records
+        }
+        self.productsWS = productsWS
+        
         self.delegate?.listProductsUpdated()
-        if products.count == 0{
+        if getProducts().count == 0{
             self.delegate?.errorServices(message: "Nothing to show, try to find something else")
         }
     }

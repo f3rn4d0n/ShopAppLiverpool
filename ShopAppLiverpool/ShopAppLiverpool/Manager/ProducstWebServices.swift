@@ -12,17 +12,17 @@ import Network
 
 protocol ProducstWebServicesDelegate{
     func errorServices(message:String)
-    func newList(products: [Product])
+    func requestComplete(productsWS: ProductWSResponse)
     func requestError(_ error:Error)
 }
 
 class ProducstWebServices: NSObject {
     var delegate: ProducstWebServicesDelegate?
-    var dataTask: URLSessionDataTask?
-    let monitor = NWPathMonitor()
-    var internetEnable = true
+    private var dataTask: URLSessionDataTask?
+    private let monitor = NWPathMonitor()
+    private var internetEnable = true
     
-    func requestListProducts(_ search:String) {
+    func requestListProducts(_ search:String, pageToSearch:String) {
         self.checkInternetConnection()
         if !internetEnable{
             self.delegate?.errorServices(message: "Internet connection is not enable, please try again latter" )
@@ -34,7 +34,7 @@ class ProducstWebServices: NSObject {
             urlComponents.queryItems = [
                 URLQueryItem(name: "force-plp", value: "true"),
                 URLQueryItem(name: "search-string", value: search),
-                URLQueryItem(name: "page-number", value: "3"),
+                URLQueryItem(name: "page-number", value: pageToSearch),
                 URLQueryItem(name: "number-of-items-per-page", value: "20")
             ]
             guard let url = urlComponents.url else {
@@ -55,11 +55,7 @@ class ProducstWebServices: NSObject {
                         do{
                             if response.statusCode == 200{
                                 let productsWS = try JSONDecoder().decode(ProductWSResponse.self, from: data)
-                                if productsWS.status.statusCode == 0{
-                                    self?.delegate?.newList(products: productsWS.plpResults.records)
-                                }else{
-                                    self?.delegate?.errorServices(message: "Something went wrong, please try more latter")
-                                }
+                                self?.delegate?.requestComplete(productsWS: productsWS)
                             }else{
                                 self?.delegate?.errorServices(message: "Something went wrong, please try more latter")
                             }

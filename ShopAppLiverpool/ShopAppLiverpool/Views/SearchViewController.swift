@@ -30,7 +30,6 @@ class SearchViewController: UIViewController {
         search.searchBar.sizeToFit()
         search.searchBar.isTranslucent = false
         search.searchBar.delegate = self
-//        search.searchResultsUpdater = self
         return search
     }()
     
@@ -71,13 +70,13 @@ class SearchViewController: UIViewController {
     
     func requestInfo(){
         controller.delegate = self
-        controller.requestListProducts()
+        controller.requestListProducts(category: nil)
     }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  self.controller.products.count
+        return  self.controller.getProducts().count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,20 +86,23 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCellIdentifier", for: indexPath) as! ProductTableViewCell
         cell.setupUI()
-        cell.fillWith(product: controller.products[indexPath.row])
+        cell.fillWith(product: controller.getProducts()[indexPath.row])
+        let count = self.controller.getProducts().count
+        if count > 1, indexPath.row == count - 1{
+            self.controller.requestNextPage()
+        }
         return cell
     }
 }
 
 extension SearchViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        controller.requestListProducts(category: searchBar.text ?? "")
+        controller.requestListProducts(category: searchBar.text)
     }
 }
 
 extension SearchViewController: SearchControllerProtocol{
     func errorServices(message: String) {
-        print(message)
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let latter = UIAlertAction(title: "Accept", style: .default) { (_) in}
         alert.addAction(latter)

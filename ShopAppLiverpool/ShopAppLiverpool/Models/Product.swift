@@ -20,7 +20,16 @@ struct status: Decodable{
 }
 
 struct plpResults: Decodable{
+    var plpState: plpState
     var records: [Product]
+}
+
+struct plpState: Decodable{
+    var firstRecNum: Int
+    var lastRecNum: Int
+    var recsPerPage: Int
+    var totalNumRecs: Int
+    var originalSearchTerm: String
 }
 
 struct Product: Decodable {
