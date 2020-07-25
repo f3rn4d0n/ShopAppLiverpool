@@ -38,8 +38,13 @@ class SearchController: NSObject {
         if let categorySelect = category{
             categoryToSearch = categorySelect
         }
-        pageToSearch = 1
-        webServices.requestListProducts(categoryToSearch, pageToSearch: "1")
+        if categoryToSearch.replacingOccurrences(of: " ", with: "").count > 0{
+            pageToSearch = 1
+            webServices.requestListProducts(categoryToSearch, pageToSearch: "1")
+            self.storeInformation()
+        }else{
+            self.delegate?.errorServices(message: "Nothing to search, please add a product to search")
+        }
     }
     
     func requestNextPage(){
