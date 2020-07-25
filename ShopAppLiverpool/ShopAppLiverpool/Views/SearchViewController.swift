@@ -13,7 +13,7 @@ class SearchViewController: UIViewController {
     //UIComponents
     lazy var productsTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .red
+        tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.dataSource = self
@@ -63,6 +63,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCellIdentifier", for: indexPath) as! ProductTableViewCell
         cell.setupUI()
+        cell.fillWith(product: controller.products[indexPath.row])
         return cell
     }
 }
