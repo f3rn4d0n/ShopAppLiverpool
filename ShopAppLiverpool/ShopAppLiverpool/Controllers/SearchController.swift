@@ -12,14 +12,15 @@ import Network
 
 protocol SearchControllerProtocol{
     func errorServices(message:String)
-    func listUpdated(products: [Product])
+    func listProductsUpdated()
 }
 
 class SearchController: NSObject {
     var delegate: SearchControllerProtocol?
+    var products:[Product] = []
+    let webServices = ProducstWebServices()
     
     func requestListProducts() {
-        let webServices = ProducstWebServices()
         webServices.delegate = self
         webServices.requestListProducts()
     }
@@ -31,12 +32,11 @@ extension SearchController: ProducstWebServicesDelegate{
     }
     
     func newList(products: [Product]) {
-        self.delegate?.listUpdated(products: products)
+        self.products = products
+        self.delegate?.listProductsUpdated()
     }
     
     func requestError(_ error: Error) {
         self.delegate?.errorServices(message: error.localizedDescription)
     }
-    
-    
 }

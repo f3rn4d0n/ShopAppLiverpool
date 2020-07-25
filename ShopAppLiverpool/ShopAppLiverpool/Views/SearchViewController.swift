@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    //UIComponents
     lazy var productsTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .red
@@ -20,6 +21,9 @@ class SearchViewController: UIViewController {
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: "ProductTableViewCellIdentifier")
         return tableView
     }()
+    
+    //Workflow variables
+    let controller = SearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +46,6 @@ class SearchViewController: UIViewController {
     }
     
     func requestInfo(){
-       let controller = SearchController()
         controller.delegate = self
         controller.requestListProducts()
     }
@@ -50,7 +53,7 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  1
+        return  self.controller.products.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -73,9 +76,7 @@ extension SearchViewController: SearchControllerProtocol{
         present(alert, animated: true, completion: nil)
     }
     
-    func listUpdated(products: [Product]) {
+    func listProductsUpdated(){
         productsTableView.reloadData()
     }
-    
-    
 }
