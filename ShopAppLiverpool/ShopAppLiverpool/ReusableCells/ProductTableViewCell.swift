@@ -86,8 +86,8 @@ class ProductTableViewCell: UITableViewCell {
     }
     
     func fillWith(product:Product?){
-        name.text = product?.name
-        price.text = product?.price
-        location.text = product?.location
+        name.text = product?.productDisplayName
+        price.text = "\(product?.listPrice ?? 0.0)"
+        location.text = product?.seller
     }
 }

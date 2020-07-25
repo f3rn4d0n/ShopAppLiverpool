@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        requestInfo()
     }
     
     func setupUI(){
@@ -38,6 +39,12 @@ class SearchViewController: UIViewController {
         productsTableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
         productsTableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
         productsTableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    }
+    
+    func requestInfo(){
+       let controller = SearchController()
+        controller.delegate = self
+        controller.requestListProducts()
     }
 }
 
@@ -55,4 +62,20 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         cell.setupUI()
         return cell
     }
+}
+
+extension SearchViewController: SearchControllerProtocol{
+    func errorServices(message: String) {
+        print(message)
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let latter = UIAlertAction(title: "Accept", style: .default) { (_) in}
+        alert.addAction(latter)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func listUpdated(products: [Product]) {
+        productsTableView.reloadData()
+    }
+    
+    
 }

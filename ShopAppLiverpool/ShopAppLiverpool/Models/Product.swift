@@ -8,9 +8,24 @@
 
 import UIKit
 
+
+struct ProductWSResponse: Decodable{
+    var status: status
+    var plpResults: plpResults
+}
+
+struct status: Decodable{
+    var status: String
+    var statusCode: Int
+}
+
+struct plpResults: Decodable{
+    var records: [Product]
+}
+
 struct Product: Decodable {
-    var name:String
-    var price:String
-    var image:String
-    var location:String
+    var productDisplayName:String
+    var listPrice:Double
+    var smImage:String
+    var seller:String
 }
