@@ -33,6 +33,32 @@ class SearchViewController: UIViewController {
         return search
     }()
     
+    lazy var loaderView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.alpha = 0.8
+        view.isHidden = true
+        return view
+    }()
+    
+    let loaderTextLabel:UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = label.font.withSize(20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "Wait a moment please"
+        return label
+    }()
+    
+    let loaderIndicator: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView(style: .large)
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        indicatorView.color = .white
+        return indicatorView
+    }()
+    
     //Workflow variables
     let controller = SearchController()
     
@@ -46,6 +72,7 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .white
         setupNavigationBar()
         setupTableView()
+        setupLoader()
     }
     
     func setupNavigationBar(){
@@ -59,6 +86,24 @@ class SearchViewController: UIViewController {
         navigationItem.searchController = searchBar
     }
     
+    func setupLoader(){
+        let guide = view.safeAreaLayoutGuide
+        view.addSubview(loaderView)
+        loaderView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+        loaderView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+        loaderView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+        loaderView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+        
+        loaderView.addSubview(loaderTextLabel)
+        loaderTextLabel.centerYAnchor.constraint(equalTo: loaderView.centerYAnchor, constant: -40).isActive = true
+        loaderTextLabel.centerXAnchor.constraint(equalTo: loaderView.centerXAnchor).isActive = true
+        loaderTextLabel.widthAnchor.constraint(equalTo: loaderView.widthAnchor).isActive = true
+        
+        loaderView.addSubview(loaderIndicator)
+        loaderIndicator.topAnchor.constraint(equalTo: loaderTextLabel.bottomAnchor, constant: 20).isActive = true
+        loaderIndicator.centerXAnchor.constraint(equalTo: loaderView.centerXAnchor).isActive = true
+    }
+    
     func setupTableView(){
         let guide = view.safeAreaLayoutGuide
         view.addSubview(productsTableView)
@@ -69,8 +114,19 @@ class SearchViewController: UIViewController {
     }
     
     func requestInfo(){
+        showLoader()
         controller.delegate = self
         controller.requestListProducts(category: nil)
+    }
+    
+    func showLoader(){
+        loaderView.isHidden = false
+        loaderIndicator.startAnimating()
+    }
+    
+    func closeLoader(){
+        loaderView.isHidden = true
+        loaderIndicator.stopAnimating()
     }
 }
 
@@ -97,12 +153,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
 
 extension SearchViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        showLoader()
         controller.requestListProducts(category: searchBar.text)
     }
 }
 
 extension SearchViewController: SearchControllerProtocol{
     func errorServices(message: String) {
+        closeLoader()
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let latter = UIAlertAction(title: "Accept", style: .default) { (_) in}
         alert.addAction(latter)
@@ -110,6 +168,7 @@ extension SearchViewController: SearchControllerProtocol{
     }
     
     func listProductsUpdated(){
+        closeLoader()
         productsTableView.reloadData()
     }
 }

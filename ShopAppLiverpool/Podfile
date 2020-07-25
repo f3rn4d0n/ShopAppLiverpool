@@ -9,8 +9,6 @@ use_frameworks!
 def liverpoolPod
   # Image managers
   pod 'Kingfisher' # Downloading and caching images
-  # UI Elements
-  pod 'NVActivityIndicatorView' # Loading view
 end
 
 target 'ShopAppLiverpool' do
