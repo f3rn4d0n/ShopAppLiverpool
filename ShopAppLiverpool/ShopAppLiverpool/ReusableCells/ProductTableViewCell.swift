@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProductTableViewCell: UITableViewCell {
     
@@ -86,5 +87,14 @@ class ProductTableViewCell: UITableViewCell {
         name.text = product?.productDisplayName
         price.text = "$\(product?.listPrice ?? 0.0)"
         location.text = product?.seller
+        if let smImage = product?.smImage{
+            thumbnail.kf.setImage(
+                with: URL(string: smImage),
+                placeholder: #imageLiteral(resourceName: "liverpoolImg"),
+                options: [.transition(.fade(1))]
+            )
+        }else{
+            thumbnail.image = #imageLiteral(resourceName: "liverpoolImg")
+        }
     }
 }
