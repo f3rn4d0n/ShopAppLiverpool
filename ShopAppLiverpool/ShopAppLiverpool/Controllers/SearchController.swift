@@ -28,6 +28,11 @@ class SearchController: NSObject {
     private var categoryToSearch = ""
     private var pageToSearch = 1
     
+    override init() {
+        super.init()
+        loadInformation()
+    }
+    
     func requestListProducts(category:String?) {
         webServices.delegate = self
         if let categorySelect = category{
@@ -51,6 +56,17 @@ class SearchController: NSObject {
     
     func getProducts() -> [Product]{
         return products
+    }
+    
+    //User defaults
+    private func storeInformation(){
+        let defaults = UserDefaults.standard
+        defaults.set(categoryToSearch, forKey: "categoryToSearch")
+    }
+    
+    private func loadInformation(){
+        let defaults = UserDefaults.standard
+        categoryToSearch = defaults.string(forKey: "categoryToSearch") ?? ""
     }
 }
 
