@@ -9,21 +9,19 @@
 /* Begin PBXBuildFile section */
 		CEC32E9424CC7415002026CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32E9324CC7415002026CE /* AppDelegate.swift */; };
 		CEC32E9624CC7415002026CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32E9524CC7415002026CE /* SceneDelegate.swift */; };
-		CEC32E9824CC7415002026CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32E9724CC7415002026CE /* ViewController.swift */; };
-		CEC32E9B24CC7415002026CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC32E9924CC7415002026CE /* Main.storyboard */; };
 		CEC32E9D24CC741A002026CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC32E9C24CC741A002026CE /* Assets.xcassets */; };
 		CEC32EA024CC741A002026CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC32E9E24CC741A002026CE /* LaunchScreen.storyboard */; };
+		CEC32EA924CC756F002026CE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC32EA824CC756F002026CE /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CEC32E9024CC7415002026CE /* ShopAppLiverpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopAppLiverpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC32E9324CC7415002026CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEC32E9524CC7415002026CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CEC32E9724CC7415002026CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CEC32E9A24CC7415002026CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEC32E9C24CC741A002026CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC32E9F24CC741A002026CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEC32EA124CC741A002026CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEC32EA824CC756F002026CE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +54,22 @@
 		CEC32E9224CC7415002026CE /* ShopAppLiverpool */ = {
 			isa = PBXGroup;
 			children = (
+				CEC32EA724CC754E002026CE /* SearchVC */,
 				CEC32E9324CC7415002026CE /* AppDelegate.swift */,
 				CEC32E9524CC7415002026CE /* SceneDelegate.swift */,
-				CEC32E9724CC7415002026CE /* ViewController.swift */,
-				CEC32E9924CC7415002026CE /* Main.storyboard */,
 				CEC32E9C24CC741A002026CE /* Assets.xcassets */,
 				CEC32E9E24CC741A002026CE /* LaunchScreen.storyboard */,
 				CEC32EA124CC741A002026CE /* Info.plist */,
 			);
 			path = ShopAppLiverpool;
+			sourceTree = "<group>";
+		};
+		CEC32EA724CC754E002026CE /* SearchVC */ = {
+			isa = PBXGroup;
+			children = (
+				CEC32EA824CC756F002026CE /* SearchViewController.swift */,
+			);
+			path = SearchVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +132,6 @@
 			files = (
 				CEC32EA024CC741A002026CE /* LaunchScreen.storyboard in Resources */,
 				CEC32E9D24CC741A002026CE /* Assets.xcassets in Resources */,
-				CEC32E9B24CC7415002026CE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC32E9824CC7415002026CE /* ViewController.swift in Sources */,
 				CEC32E9424CC7415002026CE /* AppDelegate.swift in Sources */,
+				CEC32EA924CC756F002026CE /* SearchViewController.swift in Sources */,
 				CEC32E9624CC7415002026CE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +151,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CEC32E9924CC7415002026CE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CEC32E9A24CC7415002026CE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CEC32E9E24CC741A002026CE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
