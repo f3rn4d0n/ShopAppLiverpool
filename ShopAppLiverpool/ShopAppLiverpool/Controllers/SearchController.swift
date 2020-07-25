@@ -20,9 +20,9 @@ class SearchController: NSObject {
     var products:[Product] = []
     let webServices = ProducstWebServices()
     
-    func requestListProducts() {
+    func requestListProducts(category:String = "Zapatos") {
         webServices.delegate = self
-        webServices.requestListProducts()
+        webServices.requestListProducts(category)
     }
 }
 
@@ -34,6 +34,9 @@ extension SearchController: ProducstWebServicesDelegate{
     func newList(products: [Product]) {
         self.products = products
         self.delegate?.listProductsUpdated()
+        if products.count == 0{
+            self.delegate?.errorServices(message: "Nothing to show, try to find something else")
+        }
     }
     
     func requestError(_ error: Error) {

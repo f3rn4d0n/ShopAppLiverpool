@@ -16,7 +16,7 @@ class ProductTableViewCell: UITableViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 30
         image.layoutIfNeeded()
-        image.backgroundColor = .blue
+        image.backgroundColor = #colorLiteral(red: 0.8761232495, green: 0.002402308164, blue: 0.5914769173, alpha: 1)
         return image
     }()
     

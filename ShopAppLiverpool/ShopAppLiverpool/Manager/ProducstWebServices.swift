@@ -22,7 +22,7 @@ class ProducstWebServices: NSObject {
     let monitor = NWPathMonitor()
     var internetEnable = true
     
-    func requestListProducts() {
+    func requestListProducts(_ search:String) {
         self.checkInternetConnection()
         if !internetEnable{
             self.delegate?.errorServices(message: "Internet connection is not enable, please try again latter" )
@@ -33,7 +33,7 @@ class ProducstWebServices: NSObject {
         if var urlComponents = URLComponents(string: "https://shoppapp.liverpool.com.mx/appclienteservices/services/v3/plp") {
             urlComponents.queryItems = [
                 URLQueryItem(name: "force-plp", value: "true"),
-                URLQueryItem(name: "search-string", value: "[Zapatos]"),
+                URLQueryItem(name: "search-string", value: search),
                 URLQueryItem(name: "page-number", value: "3"),
                 URLQueryItem(name: "number-of-items-per-page", value: "20")
             ]
@@ -51,11 +51,15 @@ class ProducstWebServices: NSObject {
                 DispatchQueue.main.async {
                     if let error = error {
                         self?.delegate?.requestError(error)
-                    } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                    } else if let data = data, let response = response as? HTTPURLResponse{
                         do{
-                            let productsWS = try JSONDecoder().decode(ProductWSResponse.self, from: data)
-                            if productsWS.status.statusCode == 0{
-                                self?.delegate?.newList(products: productsWS.plpResults.records)
+                            if response.statusCode == 200{
+                                let productsWS = try JSONDecoder().decode(ProductWSResponse.self, from: data)
+                                if productsWS.status.statusCode == 0{
+                                    self?.delegate?.newList(products: productsWS.plpResults.records)
+                                }else{
+                                    self?.delegate?.errorServices(message: "Something went wrong, please try more latter")
+                                }
                             }else{
                                 self?.delegate?.errorServices(message: "Something went wrong, please try more latter")
                             }

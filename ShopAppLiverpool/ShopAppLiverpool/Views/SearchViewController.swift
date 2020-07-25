@@ -22,6 +22,18 @@ class SearchViewController: UIViewController {
         return tableView
     }()
     
+    lazy var searchBar:UISearchController = {
+        let search = UISearchController(searchResultsController: nil)
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.searchBarStyle = .minimal
+        search.searchBar.placeholder = "Please write your product to search"
+        search.searchBar.sizeToFit()
+        search.searchBar.isTranslucent = false
+        search.searchBar.delegate = self
+//        search.searchResultsUpdater = self
+        return search
+    }()
+    
     //Workflow variables
     let controller = SearchController()
     
@@ -33,7 +45,19 @@ class SearchViewController: UIViewController {
     
     func setupUI(){
         view.backgroundColor = .white
+        setupNavigationBar()
         setupTableView()
+    }
+    
+    func setupNavigationBar(){
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.8761232495, green: 0.002402308164, blue: 0.5914769173, alpha: 1)
+        self.navigationController!.navigationBar.barStyle = .black
+        self.navigationController!.navigationBar.isTranslucent = false
+        self.navigationController!.navigationBar.titleTextAttributes = [.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
+        self.navigationController!.navigationBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        navigationItem.title = "Liverpool"
+        navigationItem.searchController = searchBar
     }
     
     func setupTableView(){
@@ -65,6 +89,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         cell.setupUI()
         cell.fillWith(product: controller.products[indexPath.row])
         return cell
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        controller.requestListProducts(category: searchBar.text ?? "")
     }
 }
 
